@@ -37,5 +37,4 @@ When I’m outside my home network, I connect to gohcloud using [Tailscale](http
 ### Configuring Tailscale for Nextcloud Access
 To enable Nextcloud access from outside the network, Tailscale needs to advertise the appropriate routes as a subnet router. Set the following in Tailscale to define the necessary routes:
 
-```bash
-TS_ROUTES=192.168.x.x/24
+`TS_ROUTES=192.168.x.x/24`
