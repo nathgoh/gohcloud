@@ -1,0 +1,52 @@
+services:
+  nextcloud_app:
+    image: lscr.io/linuxserver/nextcloud:latest
+    container_name: nextcloud_app
+    environment:
+      - PUID=${PUID}
+      - PGID=${PUID}
+      - TZ=${TZ}
+      - REDIS_HOST=${REDIS_HOST}
+    volumes:
+      - /PATH_TO_NEXTCLOUD_CONFIG:/config
+      - /PATH_TO_NEXTCLOUD_DATA:/data
+    ports:
+      - 443:443
+    restart: unless-stopped
+    depends_on:
+      - nextcloud_db
+      - nextcloud_cache
+    networks:
+      nextcloud_network:
+
+  nextcloud_db:
+    image: linuxserver/mariadb:latest
+    container_name: nextcloud_db
+    environment:
+      - PUID=${PUID}
+      - PGID=${PUID}
+      - TZ=${TZ}
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PW}
+      - MYSQL_DATABASE=${DB_NAME}
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PW}
+    volumes:
+      - /PATH_TO_DB_CONFIG:/config
+    restart: unless-stopped
+    ports:
+      - 3306:3306
+    networks:
+      nextcloud_network:
+
+  nextcloud_cache:
+    container_name: nextcloud_cache
+    image: redis:latest
+    restart: unless-stopped
+    ports:
+      - 6379:6379
+    networks:
+      nextcloud_network:
+
+networks:
+   nextcloud_network:
+     internal: true
