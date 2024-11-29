@@ -24,6 +24,8 @@ I installed [OpenMediaVault](https://www.openmediavault.org/) (OMV) as the opera
 To manage and deploy my projects, I use the **OMV Docker Compose [plugin](https://wiki.omv-extras.org/doku.php?id=omv6:omv6_plugins:docker_compose)**, which simplifies Docker management and deployment within OpenMediaVault.
 
 ---
+## Media Server
+To aid in streaming media, mainly music from my home server, I am using **Jellyfin**. The directories Jellyfin are accessing are the same as the one from Nextcloud.
 
 ## Cloud Storage
 For personal cloud storage, I am using **Nextcloud**. It allows me to securely store and access my documents and media, providing full control over my data.

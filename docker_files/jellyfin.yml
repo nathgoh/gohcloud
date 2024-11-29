@@ -1,0 +1,19 @@
+services:
+  jellyfin:
+    image: lscr.io/linuxserver/jellyfin:latest
+    container_name: jellyfin
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+      - JELLYFIN_PublishedServerUrl=https://192.168.68.52 #optional
+    volumes:
+      - /srv/dev-disk-by-uuid-ba80cac0-1c97-45ba-b126-79d3dbac5877/jellyfin/library:/config
+      - /srv/dev-disk-by-uuid-ba80cac0-1c97-45ba-b126-79d3dbac5877/nextcloud/data/nathgoh/files/Photos:/data/media
+      - /srv/dev-disk-by-uuid-ba80cac0-1c97-45ba-b126-79d3dbac5877/nextcloud/data/nathgoh/files/Music:/data/music
+    ports:
+      - 8096:8096
+      #- 8920:8920 #optional
+      #- 7359:7359/udp #optional
+      #- 1900:1900/udp #optional
+    restart: unless-stopped
