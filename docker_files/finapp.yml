@@ -1,0 +1,14 @@
+name: finapp
+
+services:
+  finapp:
+    container_name: finapp
+    image: finapp:latest
+    volumes:
+      - /finance-tracker:/app
+    ports:
+      - '8501:8501'
+    restart: always
+    healthcheck:
+      disable: false
+
